@@ -12,7 +12,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/jinghui0108/golib/jerrors"
+	"gitee.com/hhvy/golib/jerrors"
 )
 
 type Http struct {

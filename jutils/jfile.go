@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/jinghui0108/golib/jerrors"
+	"gitee.com/hhvy/golib/jerrors"
 )
 
 func FileIsExists(filepath string) bool {

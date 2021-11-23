@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io"
 	"os"
+
+	"gitee.com/hhvy/golib/jtime"
 )
 
 /*
@@ -12,11 +14,11 @@ import (
 *
  */
 
-var _timeUtil *TimeUtils = nil
+var _timeUtil *jtime.TimeUtils = nil
 
-func _getTimeUtil() *TimeUtils {
+func _getTimeUtil() *jtime.TimeUtils {
 	if _timeUtil == nil {
-		_timeUtil = BuildTimeUtilsNoFmt()
+		_timeUtil = jtime.BuildTimeUtilsNoFmt()
 	}
 
 	return _timeUtil
@@ -102,7 +104,7 @@ func (l *LogUtils) _openLog(flag string) bool {
 * 211123
  */
 func (l *LogUtils) _writeLog(flag string, content string) {
-	if _, l.LastError = io.WriteString(l._logFile, NowDateTime()+" ["+flag+"] "+content+"\n"); l.LastError != nil {
+	if _, l.LastError = io.WriteString(l._logFile, jtime.NowDateTime()+" ["+flag+"] "+content+"\n"); l.LastError != nil {
 		fmt.Println("failed to write file", l.LastError.Error())
 	}
 }
