@@ -1,3 +1,3 @@
-module github.com/jinghui0108/golib/jlog
+module gitee.com/hhvy/golib/jlog
 
 go 1.16

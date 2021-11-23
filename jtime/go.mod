@@ -1,3 +1,3 @@
-module github.com/jinghui0108/golib/jtime
+module gitee.com/hhvy/golib/jtime
 
 go 1.16

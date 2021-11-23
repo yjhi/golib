@@ -1,4 +1,4 @@
-module github.com/jinghui0108/golib/jsql
+module gitee.com/hhvy/golib/jsql
 
 go 1.16
 

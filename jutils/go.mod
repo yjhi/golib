@@ -1,3 +1,3 @@
-module github.com/jinghui0108/golib/jutils
+module gitee.com/hhvy/golib/jutils
 
 go 1.16

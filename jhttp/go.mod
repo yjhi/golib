@@ -1,3 +1,3 @@
-module github.com/jinghui0108/golib/jhttp
+module gitee.com/hhvy/golib/jhttp
 
 go 1.16

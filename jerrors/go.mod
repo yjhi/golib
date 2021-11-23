@@ -1,3 +1,3 @@
-module github.com/jinghui0108/golib/jerrors
+module gitee.com/hhvy/golib/jerrors
 
 go 1.16
