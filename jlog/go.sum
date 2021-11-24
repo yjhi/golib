@@ -1,6 +1,2 @@
 gitee.com/hhvy/golib v0.0.0-20211123092420-22a84008fd42 h1:+VtYcWtf9EBOFLfaiR6Td7sUMfu2yNa4QG8CZrnOu2U=
-gitee.com/hhvy/golib/jtime v0.0.0-20211123092420-22a84008fd42 h1:CDXGKHMzri3BpISXqcH70zphfzEHJB/XTLg+6yxGHLg=
-gitee.com/hhvy/golib/jtime v0.0.0-20211123092420-22a84008fd42/go.mod h1:M57V0iy5gGoKT6YpfxgcVF29n8mxxO4+Tise2mkfqg4=
-github.com/jinghui0108/golib v1.0.2 h1:vPcwxq/YJP9luXFXYjJ14t3FkZr0gOAwR3ptlxBPh3s=
-github.com/jinghui0108/golib/jtime v0.0.0-20210816092022-22f52cc65041 h1:hQrkoEaUj5LqJhaTR0Pe8kvqkm7Aanu1lhgUtcWHIxo=
-github.com/jinghui0108/golib/jtime v0.0.0-20210816092022-22f52cc65041/go.mod h1:lQxOEAao2OvA3lyMY6+ZBQRRAIc9dGqWMdlNQwKE2Hc=
+
