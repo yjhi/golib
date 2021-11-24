@@ -8,11 +8,21 @@ import (
 	"gitee.com/hhvy/golib/jerrors"
 )
 
+/*
+*
+* add by yjh 211124
+* check fiel esists
+ */
 func FileIsExists(filepath string) bool {
 	_, err := os.Lstat(filepath)
 	return !os.IsNotExist(err)
 }
 
+/*
+*
+* add by yjh 211124
+* read file content
+ */
 func ReadFileAll(path string) (string, error) {
 
 	if !FileIsExists(path) {
@@ -36,6 +46,11 @@ func ReadFileAll(path string) (string, error) {
 	return string(fd), nil
 }
 
+/*
+*
+* add by yjh 211124
+* make dir
+ */
 func MkDir(path string) {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		os.Mkdir(path, 0777)
