@@ -1,55 +1,46 @@
 package jtime
 
-import (
-	"fmt"
-	"strings"
-	"time"
-)
+import "time"
 
+/*
+* add by yjh 211124
+* parse time utils
+ */
 type TimeUtils struct {
 	FormatDate     string
 	FormatTime     string
 	FormatDateTime string
 }
 
-func _formatDateParse(sf string) string {
-	sf = strings.Replace(sf, "yyyy", "2006", 1)
-	sf = strings.Replace(sf, "MM", "01", 1)
-	sf = strings.Replace(sf, "dd", "02", 1)
-
-	return sf
-}
-
-func _formatTimeParse(sf string) string {
-
-	sf = strings.Replace(sf, "hh", "15", 1)
-	sf = strings.Replace(sf, "mm", "04", 1)
-	sf = strings.Replace(sf, "ss", "05", 1)
-
-	return sf
-}
-
-func _formatDateTimeParse(sf string) string {
-	sf = _formatDateParse(sf)
-	sf = _formatTimeParse(sf)
-	return sf
-}
-
-func _timeStr(f string) string {
-	return time.Now().Format(f)
-}
-
+/*
+* add by yjh 211124
+* parse time
+ */
 func (t TimeUtils) Time() string {
 	return _timeStr(t.FormatTime)
 }
 
+/*
+* add by yjh 211124
+* parse date
+ */
 func (t TimeUtils) Date() string {
 	return _timeStr(t.FormatDate)
 }
 
+/*
+* add by yjh 211124
+* parse datetime
+ */
+
 func (t TimeUtils) DateTime() string {
 	return _timeStr(t.FormatDateTime)
 }
+
+/*
+* add by yjh 211124
+* parse datetime with fmt
+ */
 
 func (t TimeUtils) TimeWithFmt(f string) string {
 	return _timeStr(_formatTimeParse(f))
@@ -61,34 +52,37 @@ func (t TimeUtils) DateTimeWithFmt(f string) string {
 	return _timeStr(_formatDateTimeParse(f))
 }
 
-func BuildTimeUtils() *TimeUtils {
-	return &TimeUtils{
-		FormatDate:     "2006-01-02",
-		FormatTime:     "15:04:05",
-		FormatDateTime: "2006-01-02 15:04:05",
-	}
+/*
+* add by yjh 211125
+* count time
+ */
+type TimeCount struct {
+	_startTime time.Time
+	_stopTime  time.Time
 }
 
-func BuildTimeUtilsNoFmt() *TimeUtils {
-	return &TimeUtils{
-		FormatDate:     "20060102",
-		FormatTime:     "150405",
-		FormatDateTime: "20060102150405",
-	}
+func (t *TimeCount) Start() {
+	t._startTime = time.Now()
 }
 
-func NowDateTime() string {
-	return time.Now().Format("2006-01-02 15:04:05")
+func (t *TimeCount) Minutes() float64 {
+	t._stopTime = time.Now()
+
+	return t._stopTime.Sub(t._startTime).Minutes()
+}
+func (t *TimeCount) Seconds() float64 {
+	t._stopTime = time.Now()
+
+	return t._stopTime.Sub(t._startTime).Seconds()
+}
+func (t *TimeCount) Hours() float64 {
+	t._stopTime = time.Now()
+
+	return t._stopTime.Sub(t._startTime).Hours()
 }
 
-func NowTime() string {
-	return time.Now().Format("15:04:05")
-}
+func (t *TimeCount) Microseconds() int64 {
+	t._stopTime = time.Now()
 
-func NowDate() string {
-	return time.Now().Format("2006-01-02")
-}
-
-func UnixTime() string {
-	return fmt.Sprintf("%d", time.Now().Unix())
+	return t._stopTime.Sub(t._startTime).Microseconds()
 }
