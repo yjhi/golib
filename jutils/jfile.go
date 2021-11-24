@@ -35,3 +35,10 @@ func ReadFileAll(path string) (string, error) {
 
 	return string(fd), nil
 }
+
+func MkDir(path string) {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		os.Mkdir(path, 0777)
+		os.Chmod(path, 0777)
+	}
+}

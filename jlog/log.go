@@ -24,13 +24,6 @@ func _getTimeUtil() *jtime.TimeUtils {
 	return _timeUtil
 }
 
-func MkDir(path string) {
-	if _, err := os.Stat(path); os.IsNotExist(err) {
-		os.Mkdir(path, 0777)
-		os.Chmod(path, 0777)
-	}
-}
-
 func _logDayName(tail string) string {
 
 	logname := _getTimeUtil().Date()
