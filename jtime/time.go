@@ -86,3 +86,8 @@ func (t *TimeCount) Microseconds() int64 {
 
 	return t._stopTime.Sub(t._startTime).Microseconds()
 }
+func (t *TimeCount) Milliseconds() int64 {
+	t._stopTime = time.Now()
+
+	return t._stopTime.Sub(t._startTime).Milliseconds()
+}
