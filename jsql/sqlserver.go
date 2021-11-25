@@ -45,7 +45,7 @@ func (s *SqlServerUtils) ConnectSqlServer(constr string) bool {
 
 	s.Db, s.Error = sql.Open("mssql", constr)
 
-	if s.Error != nil {
+	if s.Error == nil {
 		s.IsOpen = true
 	}
 
