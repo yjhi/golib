@@ -21,7 +21,7 @@ func BuildSqlServer() *SqlServerUtils {
 
 	s := &SqlServerUtils{
 		SqlUtils: SqlUtils{
-			Error: nil,
+			_error: nil,
 		},
 		IsOpen: false,
 	}
@@ -43,9 +43,9 @@ func (s *SqlServerUtils) ConnectSqlServerString(server string, user string, pass
 
 func (s *SqlServerUtils) ConnectSqlServer(constr string) bool {
 
-	s.Db, s.Error = sql.Open("mssql", constr)
+	s.Db, s._error = sql.Open("mssql", constr)
 
-	if s.Error == nil {
+	if s._error == nil {
 		s.IsOpen = true
 	}
 

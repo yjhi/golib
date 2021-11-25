@@ -10,11 +10,23 @@ import (
 *
  */
 type SqlUtils struct {
-	Error  error
+	_error error
 	Db     *sql.DB
 	Result sql.Result
 	Tx     *sql.Tx
 	Stmt   *sql.Stmt
+}
+
+func (s *SqlUtils) SetError(err error) {
+	s._error = err
+}
+
+func (s *SqlUtils) Error() string {
+	if s._error == nil {
+		return ""
+	} else {
+		return s._error.Error()
+	}
 }
 
 func (s *SqlUtils) ExecCmd(cmd string) bool {
@@ -24,14 +36,14 @@ func (s *SqlUtils) ExecCmd(cmd string) bool {
 	}
 
 	var stmt *sql.Stmt
-	stmt, s.Error = s.Db.Prepare(cmd)
+	stmt, s._error = s.Db.Prepare(cmd)
 
-	if s.Error != nil {
+	if s._error != nil {
 		return false
 	}
-	s.Result, s.Error = stmt.Exec()
+	s.Result, s._error = stmt.Exec()
 
-	return s.Error == nil
+	return s._error == nil
 }
 
 func (s *SqlUtils) ExecCmdWithArgs(cmd string, args ...interface{}) bool {
@@ -41,15 +53,15 @@ func (s *SqlUtils) ExecCmdWithArgs(cmd string, args ...interface{}) bool {
 	}
 
 	var stmt *sql.Stmt
-	stmt, s.Error = s.Db.Prepare(cmd)
+	stmt, s._error = s.Db.Prepare(cmd)
 
-	if s.Error != nil {
+	if s._error != nil {
 		return false
 	}
 
-	s.Result, s.Error = stmt.Exec(args...)
+	s.Result, s._error = stmt.Exec(args...)
 
-	return s.Error == nil
+	return s._error == nil
 }
 
 func (s *SqlUtils) GetInt(cmd string) (int64, bool) {
@@ -60,9 +72,9 @@ func (s *SqlUtils) GetInt(cmd string) (int64, bool) {
 
 	var count int64
 
-	s.Error = s.Db.QueryRow(cmd).Scan(&count)
+	s._error = s.Db.QueryRow(cmd).Scan(&count)
 
-	if s.Error != nil {
+	if s._error != nil {
 		return 0, false
 	}
 	return count, true
@@ -76,9 +88,9 @@ func (s *SqlUtils) GetString(cmd string) (string, bool) {
 
 	var str string
 
-	s.Error = s.Db.QueryRow(cmd).Scan(&str)
+	s._error = s.Db.QueryRow(cmd).Scan(&str)
 
-	if s.Error != nil {
+	if s._error != nil {
 		return "", false
 	}
 
@@ -91,9 +103,9 @@ func (s *SqlUtils) Begin() bool {
 		return false
 	}
 
-	s.Tx, s.Error = s.Db.Begin()
+	s.Tx, s._error = s.Db.Begin()
 
-	return s.Error == nil
+	return s._error == nil
 
 }
 
@@ -106,9 +118,9 @@ func (s *SqlUtils) End() bool {
 		return false
 	}
 
-	s.Error = s.Tx.Commit()
+	s._error = s.Tx.Commit()
 
-	if s.Error != nil {
+	if s._error != nil {
 		s.Tx.Rollback()
 
 		return false
@@ -124,9 +136,9 @@ func (s *SqlUtils) Prepare(cmd string) bool {
 		return false
 	}
 
-	s.Stmt, s.Error = s.Db.Prepare(cmd)
+	s.Stmt, s._error = s.Db.Prepare(cmd)
 
-	return s.Error == nil
+	return s._error == nil
 }
 
 func (s *SqlUtils) ExecBatch(args ...interface{}) bool {
@@ -138,8 +150,8 @@ func (s *SqlUtils) ExecBatch(args ...interface{}) bool {
 		return false
 	}
 
-	s.Result, s.Error = s.Stmt.Exec(args...)
+	s.Result, s._error = s.Stmt.Exec(args...)
 
-	return s.Error == nil
+	return s._error == nil
 
 }

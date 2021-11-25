@@ -19,7 +19,7 @@ type SqliteUtils struct {
 func BuildSqlite() *SqliteUtils {
 	return &SqliteUtils{
 		SqlUtils: SqlUtils{
-			Error: nil,
+			_error: nil,
 		},
 		DbFile: "",
 	}
@@ -49,17 +49,17 @@ func CreateSqliteStringWithPass(file string, user string, pass string, config st
 func (s *SqliteUtils) OpenFile(dbFile string) bool {
 
 	s.DbFile = dbFile
-	s.Db, s.Error = sql.Open("sqlite3", s.DbFile)
+	s.Db, s._error = sql.Open("sqlite3", s.DbFile)
 
-	return s.Error == nil
+	return s._error == nil
 
 }
 
 func (s *SqliteUtils) OpenFileWithPass(dbFile string, user string, pass string) bool {
 
 	s.DbFile = dbFile
-	s.Db, s.Error = sql.Open("sqlite3", CreateSqliteStringWithPass(dbFile, user, pass, ""))
+	s.Db, s._error = sql.Open("sqlite3", CreateSqliteStringWithPass(dbFile, user, pass, ""))
 
-	return s.Error == nil
+	return s._error == nil
 
 }
