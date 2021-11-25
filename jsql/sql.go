@@ -17,7 +17,7 @@ type SqlUtils struct {
 	Stmt   *sql.Stmt
 }
 
-func (s SqlUtils) ExecCmd(cmd string) bool {
+func (s *SqlUtils) ExecCmd(cmd string) bool {
 
 	if s.Db == nil {
 		return false
@@ -34,7 +34,7 @@ func (s SqlUtils) ExecCmd(cmd string) bool {
 	return s.Error == nil
 }
 
-func (s SqlUtils) ExecCmdWithArgs(cmd string, args ...interface{}) bool {
+func (s *SqlUtils) ExecCmdWithArgs(cmd string, args ...interface{}) bool {
 
 	if s.Db == nil {
 		return false
@@ -52,7 +52,7 @@ func (s SqlUtils) ExecCmdWithArgs(cmd string, args ...interface{}) bool {
 	return s.Error == nil
 }
 
-func (s SqlUtils) GetInt(cmd string) (int64, bool) {
+func (s *SqlUtils) GetInt(cmd string) (int64, bool) {
 
 	if s.Db == nil {
 		return 0, false
@@ -68,7 +68,7 @@ func (s SqlUtils) GetInt(cmd string) (int64, bool) {
 	return count, true
 }
 
-func (s SqlUtils) GetString(cmd string) (string, bool) {
+func (s *SqlUtils) GetString(cmd string) (string, bool) {
 
 	if s.Db == nil {
 		return "", false
@@ -85,7 +85,7 @@ func (s SqlUtils) GetString(cmd string) (string, bool) {
 	return str, true
 }
 
-func (s SqlUtils) Begin() bool {
+func (s *SqlUtils) Begin() bool {
 
 	if s.Db == nil {
 		return false
@@ -97,7 +97,7 @@ func (s SqlUtils) Begin() bool {
 
 }
 
-func (s SqlUtils) End() bool {
+func (s *SqlUtils) End() bool {
 	if s.Db == nil {
 		return false
 	}
@@ -118,7 +118,7 @@ func (s SqlUtils) End() bool {
 
 }
 
-func (s SqlUtils) Prepare(cmd string) bool {
+func (s *SqlUtils) Prepare(cmd string) bool {
 
 	if s.Db == nil {
 		return false
@@ -129,7 +129,7 @@ func (s SqlUtils) Prepare(cmd string) bool {
 	return s.Error == nil
 }
 
-func (s SqlUtils) ExecBatch(args ...interface{}) bool {
+func (s *SqlUtils) ExecBatch(args ...interface{}) bool {
 	if s.Db == nil {
 		return false
 	}

@@ -25,7 +25,28 @@ func BuildSqlite() *SqliteUtils {
 	}
 }
 
-func (s SqliteUtils) OpenFile(dbFile string) bool {
+func CreateSqliteString(file string, config string) string {
+
+	s := "file:" + file
+
+	if len(config) > 0 {
+		s += "?" + config
+	}
+
+	return s
+}
+
+func CreateSqliteStringWithPass(file string, user string, pass string, config string) string {
+	s := "file:" + file + "?_auth&_auth_user=" + user + "&_auth_pass=" + pass
+
+	if len(config) > 0 {
+		s += "&" + config
+	}
+	return s
+
+}
+
+func (s *SqliteUtils) OpenFile(dbFile string) bool {
 
 	s.DbFile = dbFile
 	s.Db, s.Error = sql.Open("sqlite3", s.DbFile)
@@ -34,10 +55,10 @@ func (s SqliteUtils) OpenFile(dbFile string) bool {
 
 }
 
-func (s SqliteUtils) OpenFileWithPass(dbFile string, user string, pass string) bool {
+func (s *SqliteUtils) OpenFileWithPass(dbFile string, user string, pass string) bool {
 
 	s.DbFile = dbFile
-	s.Db, s.Error = sql.Open("sqlite3", "file:"+s.DbFile+"?_auth&_auth_user="+user+"&_auth_pass="+pass)
+	s.Db, s.Error = sql.Open("sqlite3", CreateSqliteStringWithPass(dbFile, user, pass, ""))
 
 	return s.Error == nil
 
