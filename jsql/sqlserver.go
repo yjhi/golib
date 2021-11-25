@@ -42,10 +42,10 @@ func (s *SqlServerUtils) ConnectSqlServerString(server string, user string, pass
 }
 
 func (s *SqlServerUtils) ConnectSqlServer(constr string) bool {
-	var err error
-	s.Db, err = sql.Open("mssql", constr)
 
-	if err != nil {
+	s.Db, s.Error = sql.Open("mssql", constr)
+
+	if s.Error != nil {
 		s.IsOpen = true
 	}
 
