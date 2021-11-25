@@ -7,30 +7,43 @@ import (
 	_ "github.com/denisenkom/go-mssqldb"
 )
 
-type Sql struct {
-	DataBase *sql.DB
-	IsOpen   bool
+/*
+*  add by yjh 211125
+*  for sqlserver
+*
+ */
+type SqlServerUtils struct {
+	SqlUtils
+	IsOpen bool
 }
 
-func NewSql() *Sql {
+func BuildSqlServer() *SqlServerUtils {
 
-	s := &Sql{
-		DataBase: nil,
-		IsOpen:   false,
+	s := &SqlServerUtils{
+		SqlUtils: SqlUtils{
+			Error: nil,
+		},
+		IsOpen: false,
 	}
 
 	return s
 }
 
-func (s *Sql) CreateSqlServer(server string, user string, pass string, db string) bool {
+func CreateSqlServerString(server string, user string, pass string, db string) string {
 	constr := fmt.Sprintf("server=%s;user id=%s;password=%s;database=%s;encrypt=disable",
 		server, user, pass, db)
+	return constr
+}
+
+func (s *SqlServerUtils) ConnectSqlServerString(server string, user string, pass string, db string) bool {
+	constr := CreateSqlServerString(server, user, pass, db)
+
 	return s.ConnectSqlServer(constr)
 }
 
-func (s *Sql) ConnectSqlServer(constr string) bool {
+func (s *SqlServerUtils) ConnectSqlServer(constr string) bool {
 	var err error
-	s.DataBase, err = sql.Open("mssql", constr)
+	s.Db, err = sql.Open("mssql", constr)
 
 	if err != nil {
 		s.IsOpen = true
@@ -39,6 +52,6 @@ func (s *Sql) ConnectSqlServer(constr string) bool {
 	return s.IsOpen
 }
 
-func (s *Sql) CloseSqlServer() {
-	defer s.DataBase.Close()
+func (s *SqlServerUtils) CloseSqlServer() {
+	defer s.Db.Close()
 }
