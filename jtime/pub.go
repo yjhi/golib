@@ -69,3 +69,7 @@ func ParseDate(f string, s string) (time.Time, error) {
 
 	return time.ParseInLocation(_formatDateParse(f), s, time.Local)
 }
+
+func ParseDateTimeFmt(f string) string {
+	return _formatDateTimeParse(f)
+}
