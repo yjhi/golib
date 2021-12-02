@@ -57,15 +57,15 @@ func BuildTimeCount() *TimeCount {
 // 211202
 func ParseDateTime(f string, s string) (time.Time, error) {
 
-	return time.Parse(_formatDateTimeParse(f), s)
+	return time.ParseInLocation(_formatDateTimeParse(f), s, time.Local)
 }
 
 func ParseTime(f string, s string) (time.Time, error) {
 
-	return time.Parse(_formatTimeParse(f), s)
+	return time.ParseInLocation(_formatTimeParse(f), s, time.Local)
 }
 
 func ParseDate(f string, s string) (time.Time, error) {
 
-	return time.Parse(_formatDateParse(f), s)
+	return time.ParseInLocation(_formatDateParse(f), s, time.Local)
 }
