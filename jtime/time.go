@@ -2,46 +2,34 @@ package jtime
 
 import "time"
 
-/*
-* add by yjh 211124
-* parse time utils
- */
+// parse time utils
+// add by yjh 211124
 type TimeUtils struct {
 	FormatDate     string
 	FormatTime     string
 	FormatDateTime string
 }
 
-/*
-* add by yjh 211124
-* parse time
- */
+// parse time
+// add by yjh 211124
 func (t TimeUtils) Time() string {
 	return _timeStr(t.FormatTime)
 }
 
-/*
-* add by yjh 211124
-* parse date
- */
+// parse date
+//a dd by yjh 211124
 func (t TimeUtils) Date() string {
 	return _timeStr(t.FormatDate)
 }
 
-/*
-* add by yjh 211124
-* parse datetime
- */
-
+// parse datetime
+// add by yjh 211124
 func (t TimeUtils) DateTime() string {
 	return _timeStr(t.FormatDateTime)
 }
 
-/*
-* add by yjh 211124
-* parse datetime with fmt
- */
-
+// parse datetime with fmt
+// add by yjh 211124
 func (t TimeUtils) TimeWithFmt(f string) string {
 	return _timeStr(_formatTimeParse(f))
 }
@@ -52,10 +40,8 @@ func (t TimeUtils) DateTimeWithFmt(f string) string {
 	return _timeStr(_formatDateTimeParse(f))
 }
 
-/*
-* add by yjh 211125
-* count time
- */
+// count time
+// add by yjh 211125
 type TimeCount struct {
 	_startTime time.Time
 	_stopTime  time.Time

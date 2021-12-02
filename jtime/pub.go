@@ -51,3 +51,21 @@ func BuildTimeCount() *TimeCount {
 		_startTime: time.Now(),
 	}
 }
+
+// parse timestr to time
+// add by yjh
+// 211202
+func ParseDateTime(f string, s string) (time.Time, error) {
+
+	return time.Parse(_formatDateTimeParse(f), s)
+}
+
+func ParseTime(f string, s string) (time.Time, error) {
+
+	return time.Parse(_formatTimeParse(f), s)
+}
+
+func ParseDate(f string, s string) (time.Time, error) {
+
+	return time.Parse(_formatDateParse(f), s)
+}
