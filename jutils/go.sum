@@ -1,3 +1,5 @@
 gitee.com/hhvy/golib v0.0.0-20211123094104-f62cea1c96e8 h1:opiIfKhkle2aQIsnIHVHHornXPXUQarvSW1VIIub0xA=
 gitee.com/hhvy/golib/jerrors v0.0.0-20211123092420-22a84008fd42 h1:DoTTcjrXYY3m4dX0HICVIwnfOkbzRxn2lEiWLD3VPfQ=
 gitee.com/hhvy/golib/jerrors v0.0.0-20211123092420-22a84008fd42/go.mod h1:AZIerz9u1u/ZfpiOsIxGhD2IRQ8eu+GRgKjQ5s/ornA=
+github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
+github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=

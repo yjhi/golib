@@ -5,6 +5,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/md5"
+	"crypto/sha1"
 	"encoding/base64"
 	"fmt"
 	"io"
@@ -15,6 +16,18 @@ func Md5(content string) string {
 	io.WriteString(w, content)
 	md5str := fmt.Sprintf("%x", w.Sum(nil))
 	return md5str
+}
+
+func Sha1(data string) string {
+	t := sha1.New()
+	io.WriteString(t, data)
+	return fmt.Sprintf("%x", t.Sum(nil))
+}
+
+func SHA1(data string) string {
+	t := sha1.New()
+	io.WriteString(t, data)
+	return fmt.Sprintf("%X", t.Sum(nil))
 }
 
 func MD5(content string) string {
