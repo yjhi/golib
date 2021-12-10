@@ -56,3 +56,33 @@ func NewRandMN64(min int64, max int64) func() int64 {
 		return rand.Int63n(max+1) + min
 	}
 }
+
+type RandStrUtil struct {
+	strByte []byte
+	count   int
+}
+
+// make rand str in strmap
+// add by yjh
+// 211110
+func (r *RandStrUtil) Rand(count int) string {
+
+	sbyte := make([]byte, 0)
+
+	fRand := NewRandN(r.count - 1)
+
+	for i := 0; i < count; i++ {
+		sbyte = append(sbyte, r.strByte[fRand()])
+	}
+
+	return string(sbyte)
+}
+
+func BuildRandStr(str string) *RandStrUtil {
+	r := &RandStrUtil{
+		strByte: []byte(str),
+		count:   len(str),
+	}
+
+	return r
+}
