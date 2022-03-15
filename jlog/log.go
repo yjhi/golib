@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	"gitee.com/hhvy/golib/jtime"
+	"gitee.com/yjhi/golib/jtime"
 )
 
 /*

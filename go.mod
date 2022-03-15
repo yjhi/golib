@@ -1,3 +1,3 @@
-module github.com/yjhi/golib
+module gitee.com/yjhi/golib
 
 go 1.14
