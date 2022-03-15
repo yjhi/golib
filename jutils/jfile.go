@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"gitee.com/yjhi/golib/jerrors"
+	"gihub.com/yjhi/golib/jerrors"
 )
 
 /*

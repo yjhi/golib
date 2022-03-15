@@ -1,3 +1,3 @@
-module gitee.com/yjhi/golib
+module gihub.com/yjhi/golib
 
 go 1.14
